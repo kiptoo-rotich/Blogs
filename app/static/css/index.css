@@ -1,0 +1,14 @@
+body {
+    background-color: aliceblue;
+}
+
+.btn{
+    width: 100%;
+    text-align: center;
+    background-color: darkblue;
+    color:white;
+}
+
+.button{
+    text-align: center;
+}
