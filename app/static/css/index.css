@@ -2,13 +2,32 @@ body {
     background-color: aliceblue;
 }
 
-.btn{
+.btn {
     width: 100%;
     text-align: center;
     background-color: darkblue;
-    color:white;
+    color: white;
 }
 
-.button{
+.button {
     text-align: center;
+}
+
+.know {
+    text-decoration: underline;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+.quote {
+    font-family: 'Kalam', cursive;
+    font-size: 22px;
 }

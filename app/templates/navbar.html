@@ -1,7 +1,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 {% endblock %}
-<div class="navbar navbar-dark bg-info" role="navigation">
+<div class="navbar navbar-dark bg-primary" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,6 +16,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/" class="head">Home</a></li>
                 {% if current_user.is_authenticated %}
+                <li><a class="head" href="{{url_for('main.main')}}">Create post</a></li>
                 <li><a class="head" href="{{url_for('auth.logout')}}">Sign out</a></li>
                 {% else %}
                 <li><a class="head" href="{{url_for('auth.login')}}">Sign in</a></li>
