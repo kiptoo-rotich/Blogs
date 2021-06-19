@@ -2,8 +2,8 @@ from wtforms import StringField,TextAreaField, SubmitField, SelectField, Integer
 from wtforms.validators import Required
 from flask_wtf import FlaskForm
 
-class OrderForm(FlaskForm):
-    pizza_size=SelectField('Size',validators=[Required()],choices=[('Select your size','Select your size'),(1000,'Large'),(800,'Medium'),(500,'Small')])
-    pizza_toppings=SelectField('Toppings',validators=[Required()],choices=[(500,'Broccolini'),(400,'Capers'),(300,'Gorgonzola')])
-    pizza_quantity = IntegerField('Quantity',validators=[Required()])
+class BlogForm(FlaskForm):
+    blog_category=SelectField('Category',validators=[Required()],choices=[('Select your blog category','Select your blog category'),('Technology','Technology'),('Sports','Sports'),('Politics','Politics'),('Adventure','Adventure'),('Agriculture','Agriculture'),('Business',"Business"),('Others',"Others")])
+    blog_title=StringField('Title',validators=[Required()])
+    blog_content=TextAreaField('Content',validators=[Required()])
     submit = SubmitField('Submit')

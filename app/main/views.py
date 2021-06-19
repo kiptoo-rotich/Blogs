@@ -5,6 +5,7 @@ from .. import db
 from .. models import Quotes
 from ..requests import get_quote
 from . import main
+from .forms import BlogForm
 
 #views
 
@@ -21,6 +22,6 @@ def index():
 @main.route('/home')
 @login_required
 def main():
-    
-    return render_template('main/main.html')
+    blog_form=BlogForm()
+    return render_template('main/main.html',blog_form=blog_form)
 
