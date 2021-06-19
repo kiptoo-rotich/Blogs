@@ -9,7 +9,7 @@ from . import db, login_manager
 class User(UserMixin,db.Model):
     '''
     '''
-    __tablename__="users"
+    __tablename__="user"
     id=db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(255))
     email=db.Column(db.String(255))
@@ -52,7 +52,7 @@ class Blog(db.Model):
     blog_title=db.Column(db.String(255))
     blog_content=db.Column(db.String(255),min_length=100)
     posted=db.Column(db.DateTime,default=datetime.utcnow)
-    user_id=db.Column(db.Integer,db.ForegnKey("users.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
     
     def save_blog(self):
         db.session.add(self)
