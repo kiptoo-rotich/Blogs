@@ -15,6 +15,9 @@ class User(UserMixin,db.Model):
     email=db.Column(db.String(255))
     password_secure=db.Column(db.String(255))
     location=db.Column(db.String(255))
+    
+    blog = db.relationship('Blog', backref='user', lazy='dynamic')
+
 
     @property
     def password(self):
@@ -47,12 +50,13 @@ class Quotes:
 class Blog(db.Model):
     __tablename__ = 'blog'
     
+    
     id = db.Column(db.Integer, primary_key=True)
     blog_category = db.Column(db.String(255))
     blog_title=db.Column(db.String(255))
     blog_content=db.Column(db.String(255),min_length=100)
     posted=db.Column(db.DateTime,default=datetime.utcnow)
-    user_id=db.Column(db.Integer,db.ForeignKey("users.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("user.id"))
     
     def save_blog(self):
         db.session.add(self)

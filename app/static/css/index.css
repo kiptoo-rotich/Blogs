@@ -29,5 +29,14 @@ body {
 
 .quote {
     font-family: 'Kalam', cursive;
-    font-size: 22px;
+    font-size: 28px;
+}
+
+.head {
+    color: white;
+    font-size: 18px;
+}
+
+.links{
+    background-color: transparent;
 }

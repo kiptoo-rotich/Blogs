@@ -2,7 +2,7 @@ from flask import render_template, request
 from flask_login import current_user, login_required
 
 from .. import db
-from ..models import Blog, Quotes, Blog
+from ..models import Blog, Quotes
 from ..requests import get_quote
 from . import main
 from .forms import BlogForm

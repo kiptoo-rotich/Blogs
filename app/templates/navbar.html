@@ -16,10 +16,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/" class="head">Home</a></li>
                 {% if current_user.is_authenticated %}
-                <li><a class="head" href="{{url_for('main.main')}}">Create post</a></li>
-                <li><a class="head" href="{{url_for('auth.logout')}}">Sign out</a></li>
+                <li class="links"><a class="head" href="{{url_for('main.main')}}">Create post</a></li>
+                <li class="links"><a class="head" href="{{url_for('auth.logout')}}">Sign out</a></li>
                 {% else %}
-                <li><a class="head" href="{{url_for('auth.login')}}">Sign in</a></li>
+                <li class="links"><a class="head" href="{{url_for('auth.login')}}">Sign in</a></li>
                 {%endif%}
             </ul>
 
