@@ -40,3 +40,8 @@ body {
 .links{
     background-color: transparent;
 }
+
+.posts{
+    padding: 15px;
+    scroll-behavior: auto;
+}

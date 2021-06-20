@@ -8,9 +8,18 @@
         </div>
         <div class="col-md-6">
             {%for blog in blogs%}
-                {{blog.blog_category}}
-                {{blog.blog_title}}
-                {{blog.blog_content}}
+            <div class="posts bg-info">
+                <div>
+                    <h3 class="">{{blog.blog_title}}</h3>
+                </div>
+                <div>
+                    <h4>{{blog.blog_category}}</h4>
+                </div>
+                <div>
+                    {{blog.blog_content}}
+                </div>
+            </div><hr>
+
             {%endfor%}
         </div>
     </div>
