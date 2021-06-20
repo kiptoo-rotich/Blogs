@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 
 from .. import db
@@ -34,7 +34,7 @@ def main():
         db.session.add(new_blog)
         db.session.commit()
         
-        return redirect(url_for('main/main'))
+        return redirect(url_for('main.main'))
     else:
         blogs=Blog.query.order_by(Blog.posted).all()
     return render_template('main/main.html',blog_form=blog_form, blogs=blogs)
