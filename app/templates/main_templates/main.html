@@ -7,6 +7,7 @@
             {{wtf.quick_form(blog_form)}}
         </div>
         <div class="col-md-6">
+            <h1 class="text-center">POSTS</h1>
             {%for blog in blogs%}
             <div class="posts bg-info">
                 <div>
@@ -18,7 +19,13 @@
                 <div>
                     {{blog.blog_content}}
                 </div>
-            </div><hr>
+                <div class="">
+                    <img src="./../../static/icons/icons8-good-quality (1).png" alt="Like" width="30px">
+                    <img src="./../../static/icons/icons8-thumbs-down-64.png" alt="Dislike" width="30px">
+                    <a href="{{url_for('main.comments')}}">Leave a comment</a>
+                </div>
+            </div>
+            <hr>
 
             {%endfor%}
         </div>

@@ -50,14 +50,26 @@ class Quotes:
 class Blog(db.Model):
     __tablename__ = 'blog'
     
+    comment = db.relationship('Comment', backref='comments', lazy='dynamic')
+
     
     id = db.Column(db.Integer, primary_key=True)
     blog_category = db.Column(db.String(255))
     blog_title=db.Column(db.String(255))
-    blog_content=db.Column(db.String(255),min_length=100)
+    blog_content=db.Column(db.String(255))
     posted=db.Column(db.DateTime,default=datetime.utcnow)
     user_id=db.Column(db.Integer,db.ForeignKey("user.id"))
     
     def save_blog(self):
         db.session.add(self)
         db.session.commit()
+        
+
+class Comment(db.Model):
+    __tablename__="comments"
+    
+    
+    id=db.Column(db.Integer, primary_key=True)
+    comment=db.Column(db.String(255))
+    posted=db.Column(db.DateTime,default=datetime.datetime)
+    blog_id=db.Column(db.Integer,db.ForeignKey("blog_id"))

@@ -44,4 +44,6 @@ body {
 .posts{
     padding: 15px;
     scroll-behavior: auto;
+    box-shadow: 0px 0px 2px 2px solid gray;
+    overflow-y: scroll;
 }
