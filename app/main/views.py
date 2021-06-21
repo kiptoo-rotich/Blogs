@@ -10,7 +10,7 @@ from .forms import BlogForm,CommentForm
 
 #views
 
-@main.route('/')
+@main.route('/',methods=['GET'])
 def index():
     '''
     View root page function that returns the index page and its data.
