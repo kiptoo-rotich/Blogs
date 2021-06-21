@@ -1,8 +1,9 @@
 body {
     background-color: aliceblue;
+    overflow: hidden;
 }
 
-.btn {
+.button {
     width: 100%;
     text-align: center;
     background-color: darkblue;
@@ -37,13 +38,16 @@ body {
     font-size: 18px;
 }
 
-.links{
+.links {
     background-color: transparent;
 }
 
-.posts{
-    padding: 15px;
+.posts {
     scroll-behavior: auto;
     box-shadow: 0px 0px 2px 2px solid gray;
     overflow-y: scroll;
+}
+
+.content {
+    padding: 15px;
 }

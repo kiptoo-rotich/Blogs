@@ -6,10 +6,10 @@
         <div class="col-md-6">
             {{wtf.quick_form(blog_form)}}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 posts">
             <h1 class="text-center">POSTS</h1>
             {%for blog in blogs%}
-            <div class="posts bg-info">
+            <div class="content bg-info">
                 <div>
                     <h3 class="">{{blog.blog_title}}</h3>
                 </div>
@@ -17,13 +17,16 @@
                     <h4>{{blog.blog_category}}</h4>
                 </div>
                 <div>
-                    {{blog.blog_content}}
+                    {{blog.blog_content}}<br><br><br>
+                    <span style="float:right; clear:right; ">Posted on {{blog.posted.strftime('%Y-%m-%d')}}
                 </div>
                 <div class="">
                     <img src="./../../static/icons/icons8-good-quality (1).png" alt="Like" width="30px">
                     <img src="./../../static/icons/icons8-thumbs-down-64.png" alt="Dislike" width="30px">
                     <a href="{{url_for('main.comments')}}">Leave a comment</a>
-                </div>
+                </div></span>
+                <button type="button" class="btn btn-danger">Delete</button>
+
             </div>
             <hr>
 

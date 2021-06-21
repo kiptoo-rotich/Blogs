@@ -2,10 +2,10 @@ from flask import render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 
 from .. import db
-from ..models import Blog, Quotes
+from ..models import Blog, Quotes,Comment
 from ..requests import get_quote
 from . import main
-from .forms import BlogForm,Comment
+from .forms import BlogForm,CommentForm
 
 #views
 
@@ -39,13 +39,21 @@ def main_page():
         blogs=Blog.query.order_by(Blog.posted).all()
     return render_template('main_templates/main.html',blog_form=blog_form, blogs=blogs)
 
-@main.route('/home/comment/<int:id>')
+@main.route('/comments',methods=['GET','POST'])
 @login_required
-def comments(id):
-    comment_form=Comment()
-    if blog_form.validate_on_submit:
-        comment=comment_form.blog_comment.data
+def comments():
+    comment_form=CommentForm()
+    if comment_form.validate_on_submit:
+        comment_data=comment_form.blog_comment.data
         
+        new_comment=Comment(comment_data=comment_data)
         
+        new_comment.save_comment()
+        db.session.add(new_comment)
+        db.session.commit()
         
+        return redirect(url_for('main.comments'))
+    else:
+        comments=Comment.query.filter_by(Comment.id).all()
     return render_template('main_templates/comment.html',comment_form=comment_form)
+

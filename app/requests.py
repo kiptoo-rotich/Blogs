@@ -2,7 +2,6 @@ from .models import Quotes
 import urllib.request, json
 
 #Get the url
-# quote_url=app.config["quote_url"]
 quote_url='http://quotes.stormconsultancy.co.uk/random.json'
 
 
