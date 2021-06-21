@@ -21,9 +21,7 @@
                     <span style="float:right; clear:right; ">Posted on {{blog.posted.strftime('%Y-%m-%d')}}
                 </div>
                 <div class="">
-                    <img src="./../../static/icons/icons8-good-quality (1).png" alt="Like" width="30px">
-                    <img src="./../../static/icons/icons8-thumbs-down-64.png" alt="Dislike" width="30px">
-                    <a href="{{url_for('main.comments')}}">Leave a comment</a>
+                    <a href="/comments/{{blog.id}}">Leave a comment</a>
                 </div></span>
                 <button type="button" class="btn btn-danger">Delete</button>
 

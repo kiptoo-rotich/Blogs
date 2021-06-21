@@ -71,10 +71,8 @@ class Blog(db.Model):
 class Comment(db.Model):
     __tablename__="comments"
     
-    def __init__(self,id, comment,blog_content):
-        self.id=id
+    def __init__(self, comment):
         self.comment=comment
-        self.blog_content=blog_content
         
         def save_comment(self):
             db.sessiom.session.add(self)
@@ -93,10 +91,14 @@ class Comment(db.Model):
                 return response
     
     id=db.Column(db.Integer, primary_key=True)
-    blog_id=db.Column(db.Integer)
     comment_data=db.Column(db.String(255))
     blog_id=db.Column(db.Integer,db.ForeignKey("blog.id"))
     
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_comment(cls,id):
+        comment = Comment.query.filter_by(blog_id=id).all()
+        return comment

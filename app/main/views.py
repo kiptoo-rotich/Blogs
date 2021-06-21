@@ -2,9 +2,10 @@ from flask import render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 
 from .. import db
-from ..models import Blog, Quotes,Comment
+from ..models import Blog, Quotes,Comment,User
 from ..requests import get_quote
 from . import main
+from ..email import mail_message
 from .forms import BlogForm,CommentForm
 
 #views
@@ -29,6 +30,10 @@ def main_page():
         blog_content=blog_form.blog_content.data
         
         new_blog=Blog(blog_category=blog_category,blog_title=blog_title,blog_content=blog_content)
+        # email=User.query.filter_by(email).all()
+        
+        # mail_message("Welcome to PizzaPlace","email/newpost",blog_category=blog_category)
+
         
         new_blog.save_blog()
         db.session.add(new_blog)
@@ -39,21 +44,20 @@ def main_page():
         blogs=Blog.query.order_by(Blog.posted).all()
     return render_template('main_templates/main.html',blog_form=blog_form, blogs=blogs)
 
-@main.route('/comments',methods=['GET','POST'])
+@main.route('/comments/<int:id>',methods=['GET','POST'])
 @login_required
-def comments():
+def comments(id):
     comment_form=CommentForm()
     if comment_form.validate_on_submit:
         comment_data=comment_form.blog_comment.data
         
-        new_comment=Comment(comment_data=comment_data)
+        new_comment=Comment(comment=comment_data)
         
         new_comment.save_comment()
         db.session.add(new_comment)
         db.session.commit()
         
-        return redirect(url_for('main.comments'))
-    else:
-        comments=Comment.query.filter_by(Comment.id).all()
-    return render_template('main_templates/comment.html',comment_form=comment_form)
+    comm =Comment.get_comment(id)
+        
+    return render_template('main_templates/comment.html',comment_form=comment_form,comm=comm)
 
