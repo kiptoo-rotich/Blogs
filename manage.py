@@ -1,5 +1,6 @@
 from app import create_app,db
 from config import config_options
+from app.models import User,Quotes,Comment,Blog
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
 
