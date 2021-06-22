@@ -1,4 +1,4 @@
-from config import config_options
+from app.config import config_options
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager, login_manager
