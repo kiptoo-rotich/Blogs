@@ -1,4 +1,3 @@
 Hello {{user.username}}
-Welcome to Pizza Olace
-We have just seen you have signed up for our application and want to welcome you to the family...
-Enjoy delicious pizza from us; just make your order now.
+Welcome to MyBolg
+Create a blog on any topic and get reactions from public.
