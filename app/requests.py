@@ -7,7 +7,7 @@ QUOTE_URL ='http://quotes.stormconsultancy.co.uk/random.json'
 
 def get_quote():
     quotes_list=[]
-    new_quote_url=quote_url.format()
+    new_quote_url=QUOTE_URL.format()
     with urllib.request.urlopen(new_quote_url) as url:
         get_data=url.read()
         get_responce = json.loads(get_data)
