@@ -2,7 +2,7 @@ from .models import Quotes
 import urllib.request, json
 
 #Get the url
-quote_url='http://quotes.stormconsultancy.co.uk/random.json'
+QUOTE_URL ='http://quotes.stormconsultancy.co.uk/random.json'
 
 
 def get_quote():
