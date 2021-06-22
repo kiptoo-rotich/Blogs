@@ -14,3 +14,7 @@ class CommentForm(FlaskForm):
     
 class DeleteBlog(FlaskForm):
     submit=SubmitField('Delete')
+    
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')

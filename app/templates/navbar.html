@@ -14,8 +14,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/" class="head">Home</a></li>
                 {% if current_user.is_authenticated %}
+                <li class="links"><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
                 <li class="links"><a class="head" href="{{url_for('main.main_page')}}">Create post</a></li>
                 <li class="links"><a class="head" href="{{url_for('auth.logout')}}">Sign out</a></li>
                 {% else %}

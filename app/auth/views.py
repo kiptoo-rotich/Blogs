@@ -18,7 +18,7 @@ def register():
 
         
         return redirect(url_for('auth.login'))
-    title='Sign up to Pizza Place'
+    title='Sign up to MyBlog'
     return render_template('auth/register.html', registration_form=form)
 
 @auth.route('/login',methods=['GET','POST'])
@@ -31,7 +31,7 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password')
     
-    title='Sign in to Pizza Place'
+    title='Sign in to MyBlog'
     return render_template('auth/login.html',login_form=login_form,title=title)
 
 @auth.route('/logout')

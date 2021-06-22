@@ -15,6 +15,7 @@ class User(UserMixin,db.Model):
     email=db.Column(db.String(255))
     password_secure=db.Column(db.String(255))
     location=db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     
     blog = db.relationship('Blog', backref='user', lazy='dynamic')
 
@@ -70,25 +71,7 @@ class Blog(db.Model):
 
 class Comment(db.Model):
     __tablename__="comments"
-    
-    def __init__(self, comment):
-        self.comment=comment
-        
-        def save_comment(self):
-            db.sessiom.session.add(self)
-            db.session.commit()
-            
-        @classmethod
-        def clear_comments(cls):
-            Comment.all_comments.clear()
-        
-        @classmethod
-        def get_reviews(cls,id):
-            response=[]
-            for comment in cls.all_comments:
-                if comment.id==id:
-                    response.append(comment)
-                return response
+   
     
     id=db.Column(db.Integer, primary_key=True)
     comment_data=db.Column(db.String(255))
@@ -102,3 +85,19 @@ class Comment(db.Model):
     def get_comment(cls,id):
         comment = Comment.query.filter_by(blog_id=id).all()
         return comment
+    
+    def save_comment(self):
+            db.session.add(self)
+            db.session.commit()
+            
+    @classmethod
+    def clear_comments(cls):
+        Comment.all_comments.clear()
+    
+    @classmethod
+    def get_reviews(cls,id):
+        response=[]
+        for comment in cls.all_comments:
+            if comment.id==id:
+                response.append(comment)
+            return response
