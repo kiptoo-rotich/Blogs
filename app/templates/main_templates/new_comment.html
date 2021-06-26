@@ -13,11 +13,16 @@ styles%} {{ super() }}
         <div class="row">
 
             <div class="col-md-6">
+                {{wtf.quick_form(comment_form)}}
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 comment">
+                <h3 class="text-center">Comments on the post</h3>
                 {%for comment in comment%}
-                {{comment.comment_data}}
+                <b>{{current_user}}</b><br>
+                {{comment.comment_data}}<br>
+                Posted on {{comment.posted.strftime('%d %b %Y %I:%M %p')}}<br>
+                <hr>
                 {%endfor%}
             </div>
         </div>

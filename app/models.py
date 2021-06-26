@@ -72,10 +72,11 @@ class Blog(db.Model):
 class Comment(db.Model):
     __tablename__="comments"
    
-    
     id=db.Column(db.Integer, primary_key=True)
     comment_data=db.Column(db.String(255))
+    posted=db.Column(db.DateTime,default=datetime.utcnow)
     blog_id=db.Column(db.Integer,db.ForeignKey("blog.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("user.id"))
     
     def save_comment(self):
         db.session.add(self)
@@ -83,21 +84,24 @@ class Comment(db.Model):
     
     @classmethod
     def get_comment(cls,id):
-        comment = Comment.query.filter_by(blog_id=id).all()
-        return comment
+        comments = Comment.query.filter_by(blog_id=id).all()
+        return comments
     
-    def save_comment(self):
-            db.session.add(self)
-            db.session.commit()
-            
     @classmethod
     def clear_comments(cls):
         Comment.all_comments.clear()
     
-    @classmethod
-    def get_reviews(cls,id):
-        response=[]
-        for comment in cls.all_comments:
-            if comment.id==id:
-                response.append(comment)
-            return response
+    def __repr__(self):
+        return f"Comment {self.comments}, {self.posted}"
+    
+    # @classmethod
+    # def get_comments(cls,id):
+    #     response = []
+    #     for comment in cls.all_comments:
+    #         if comment.blog_id==id:
+    #             response.append(comment)
+    #     return response
+            
+    
+    
+ 

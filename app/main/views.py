@@ -44,44 +44,26 @@ def main_page():
         blogs=Blog.query.order_by(Blog.posted).all()
     return render_template('main_templates/main.html',blog_form=blog_form, blogs=blogs)
 
-# @main.route('/comments/<int:id>',methods=['GET','POST'])
-# @login_required
-# def comments(id):
-#     comment_list=[]
-#     comment_form=CommentForm()
-#     if comment_form.validate_on_submit:
-#         comment_data=comment_form.blog_comment.data
-        
-#         new_comment=Comment(comment_data=comment_data)
-        
-#         new_comment.save_comment()
-#         db.session.add(new_comment)
-#         db.session.commit()
-#         comment_list.append(new_comment)
-        
-#     comments = Comment.get_comment(id)    
-#     return render_template('main_templates/comment.html',comment_form=comment_form,comment_list=comment_list)
 
-@main.route('/comments/<id>',methods=['GET','POST'])
+@main.route('/new_comment/<int:blog_id>', methods = ['GET', 'POST'])
 @login_required
-def comments(id):
-    '''
-    Function to return comments
-    '''
-    comment_form=CommentForm()
-    comment_list=[]
-    if comment_form.validate_on_submit:
-        comment_data=comment_form.blog_comment.data
-        
-        new_comment=Comment(comment_data=comment_data)
-        
+def new_comment(blog_id):
+    
+    blogs = Blog.query.filter_by(id = blog_id).first()
+    form = CommentForm()
+    
+    comm =Comment.get_comment(blog_id)
+    
+    if form.validate_on_submit():
+        comment = form.comment_data.data
+        new_comment = Comment(comment_data=comment,user_id=current_user.id, blog_id=blog_id)
         new_comment.save_comment()
-        db.session.add(new_comment)
-        db.session.commit()
-        comment_list.append(new_comment)
-   
-    print(comment_list)
-    return render_template('main_templates/comment.html',comment_form=comment_form, comment_list = comment_list)
+        
+
+        return redirect(url_for('main.new_comment',blog_id=blog_id))
+    title='New Blog'
+    return render_template('main_templates/new_comment.html',comment=comm,title=title,comment_form = form,blog_id=blog_id)
+
 
 @main.route('/user/<uname>')
 def profile(uname):
